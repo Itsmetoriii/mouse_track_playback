@@ -1,8 +1,7 @@
-ls = [[12, 2], [10]]
+ls = [[12, 2, True], [14, 4], [15, 6, True]]
 
-for l in ls:
-    print(l[0])
-    try:
-        print(l[1])
-    except IndexError:
-        pass
+for coor in ls:
+    if True in coor:
+        print('Boom')
+    else:
+        print('Toom')

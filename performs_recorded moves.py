@@ -1,15 +1,30 @@
 from pynput.mouse import Controller
 from time import sleep
 from pynput.keyboard import Key, Listener
+from pynput.mouse import Button
 import random
 import time
 
+mouse = Controller()
 mouse_motion = []
 
 with open("mouse_coords.txt", "r") as file:
     for line in file:
-        x, y = map(int, line.strip().split(", "))
-        mouse_motion.append((x, y))
+
+        if "|" in line:
+            coord, click = line.strip().split("|")
+            x, y = map(int, coord.split(", "))
+            click = click.strip()
+            click = True
+            mouse_motion.append([x, y, click])
+        else:
+            
+            if line == "\n":
+                continue
+            else:    
+                x, y = map(int, line.split(", "))
+                mouse_motion.append([x, y])
+        
 
 if mouse_motion == []:
     print("Record some mouse movements")
@@ -50,5 +65,12 @@ if start_flag:
     move_mouse_with_duration(mouse_motion[0][0],mouse_motion[0][1] ,random.uniform(0.5, 0.9))
 
     for coor in mouse_motion:
-        mouse.position = coor
-        sleep(random.uniform(0.005, 0.01))
+        
+        if True in coor:
+            mouse.position = (coor[0], coor[1])
+            mouse.click(Button.left)
+            sleep(random.uniform(0.005, 0.01))
+        else:
+            mouse.position = coor
+            sleep(random.uniform(0.005, 0.01))
+        
