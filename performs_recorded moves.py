@@ -11,6 +11,10 @@ with open("mouse_coords.txt", "r") as file:
         x, y = map(int, line.strip().split(", "))
         mouse_motion.append((x, y))
 
+if mouse_motion == []:
+    print("Record some mouse movements")
+    exit()
+
 mouse = Controller()
 start_flag = False
 
