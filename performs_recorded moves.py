@@ -8,9 +8,15 @@ from time import sleep
 
 mouse = MouseController()
 typer = KeyboardController()
-ls = [list("Is Ratata Evil?"), list("Virat Kholi")]
 counter = 0
 stop_event = threading.Event()
+
+ls = []
+
+with open("words.txt", "r") as file:
+    for line in file:
+        line = line.rstrip()
+        ls.append(list(line))
 
 def check_if_search_bar_is_clicked():
     global counter
