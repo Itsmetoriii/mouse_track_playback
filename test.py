@@ -1,7 +1,16 @@
-ls = [[12, 2, True], [14, 4], [15, 6, True]]
+import pyautogui
+import time
 
-for coor in ls:
-    if True in coor:
-        print('Boom')
-    else:
-        print('Toom')
+timer = 1
+
+while True:
+    try:
+        if loc := pyautogui.locateCenterOnScreen('search_bar_locater.png'):    
+            x, y = loc
+            y -= 500
+            pyautogui.moveTo(x, y, duration=1)
+            #pyautogui.click()
+            break
+    except Exception:
+        print("Not detected")
+        time.sleep(timer)
