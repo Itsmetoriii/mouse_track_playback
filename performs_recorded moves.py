@@ -26,15 +26,6 @@ def check_if_search_bar_is_clicked():
             if pyautogui.locateOnScreen('search_bar_locater.png'):
                 stop_event.set()
 
-                if counter == 0:
-                    typer.press(Key.enter)
-                    typer.release(Key.enter)
-                else:
-                    for _ in range(len(ls[counter - 1])):
-                        typer.press(Key.backspace)
-                        typer.release(Key.backspace)
-                        sleep(random.uniform(0.08, 0.09))
-
                 for char in ls[counter]:
                     if char == " ":
                         sleep(0.2)
@@ -63,7 +54,7 @@ locate_thread = threading.Thread(target=check_if_search_bar_is_clicked, daemon=T
 
 mouse_motion = []
 
-with open("mouse_coords.txt", "r") as file:
+with open("mouse_coords_1.txt", "r") as file:
     for line in file:
         if "|" in line:
             coord, click = line.strip().split("|")
