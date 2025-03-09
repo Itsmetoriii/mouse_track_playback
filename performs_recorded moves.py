@@ -10,6 +10,7 @@ mouse = MouseController()
 typer = KeyboardController()
 counter = 0
 stop_event = threading.Event()
+exit_event = threading.Event()
 
 ls = []
 
@@ -79,8 +80,16 @@ def on_key(key):
         start_flag = True
         return False
 
+def on_key_exit(key):
+    if key == Key.esc:
+        print("Stopping the program")
+        exit_event.set()
+
 with Listener(on_press=on_key) as listener:
     listener.join()
+
+esc_listener = Listener(on_press=on_key_exit)
+esc_listener.start()
 
 def move_mouse_with_duration(x, y, duration):
     current_x, current_y = mouse.position
@@ -101,6 +110,10 @@ if start_flag:
     move_mouse_with_duration(mouse_motion[0][0], mouse_motion[0][1], random.uniform(0.5, 0.9))
 
     for coor in mouse_motion:
+        
+        if exit_event.is_set():
+            break
+
         while stop_event.is_set():
             sleep(0.1)
 
