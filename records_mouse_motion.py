@@ -50,7 +50,7 @@ keyListener.join()  # Keyboard stops first
 mouseListener.stop()  # Then stop the mouse listener
 clickListener.stop()
 
-with open("mouse_coords.txt", "w") as file:
+with open("mouse_coords_2.txt", "w") as file:
     for coord in ls:
         try:    
             file.write(f"{coord[0]}, {coord[1]}|{coord[2]}\n")
