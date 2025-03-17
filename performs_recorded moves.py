@@ -55,7 +55,7 @@ locate_thread = threading.Thread(target=check_if_search_bar_is_clicked, daemon=T
 
 mouse_motion = []
 
-with open("mouse_coords_2.txt", "r") as file:
+with open("mouse_coords_2.txt", "r") as file:# mouse_coords_2 works nicely
     for line in file:
         if "|" in line:
             coord, click = line.strip().split("|")
