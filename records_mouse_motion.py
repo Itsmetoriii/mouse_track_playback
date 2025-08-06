@@ -2,6 +2,9 @@ from pynput.mouse import Listener as MouseListener
 from pynput.keyboard import Listener as KeyListener, Key
 from pynput.mouse import Controller
 
+print("Press shift to start mouse tracking")
+print("press Esc to stop mouse tracking")
+
 mouse = Controller()
 running = False  # Control flag
 ls = []
@@ -50,7 +53,7 @@ keyListener.join()  # Keyboard stops first
 mouseListener.stop()  # Then stop the mouse listener
 clickListener.stop()
 
-with open("mouse_coords_2.txt", "w") as file:# mouse_coords_2 works nicely
+with open("mouse_coords_1.txt", "w") as file:# mouse_coords_1 works nicely
     for coord in ls:
         try:    
             file.write(f"{coord[0]}, {coord[1]}|{coord[2]}\n")
