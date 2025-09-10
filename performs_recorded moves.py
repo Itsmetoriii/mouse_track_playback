@@ -27,7 +27,8 @@ if not mouse_motion:
     print("Record some mouse movements")
     exit()
 else:
-    print("Shift")
+    print("Press Shift to start")
+    print("Press esc to cancel motion midway")
 
 start_flag = False
 
